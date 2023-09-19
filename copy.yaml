@@ -1,0 +1,10 @@
+---
+- name: Copy file
+  hosts: web 
+  tasks:
+    - name: copying file  
+      copy:
+        src: /home/ansible/Ansible/html/index.html
+        dest: /var/www/html/
+        backup: yes
+...
