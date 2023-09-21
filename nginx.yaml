@@ -1,0 +1,22 @@
+---
+- name: nginx creation
+  hosts: web
+  vars:
+    - ng: nginx
+  become: yes
+  tasks:
+    - name: installing nginx
+      tags:
+        - install
+      yum:
+        name: "{{ng}}" 
+        state: latest
+
+    - name: start nginx
+      tags:
+        - start
+      service:
+        name: "{{ng}}"
+        enabled: true
+        state: started 
+...
