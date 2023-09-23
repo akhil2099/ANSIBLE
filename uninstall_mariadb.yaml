@@ -1,0 +1,9 @@
+---
+- name: uninstall mariadb
+  hosts: db
+  tasks:
+    - name: uninstalling mariadb
+      yum:
+        name: mariadb
+        state: absent
+...
