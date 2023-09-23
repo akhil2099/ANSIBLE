@@ -1,0 +1,56 @@
+---
+- name: installing httpd and apache in different linux distributions
+  hosts: all
+  tasks:
+    - name: httpd install
+      tags:
+        - httpd_install
+      yum:
+        name: httpd
+        state: latest
+      when: ansible_distribution == 'AlmaLinux'
+
+    - name: apache2 install
+      tags:
+        - apache_install
+      apt:
+        name: apache2
+        state: latest
+      when: ansible_distribution == 'Linux Mint'
+
+    - name: httpd restart
+      tags:
+        - httpd_start
+      service:
+        name: httpd
+        state: started
+        enabled: true
+      when: ansible_distribution == 'AlmaLinux'
+
+    - name: apache2 restart
+      tags:
+        - apache_start
+      service:
+        name: apache2
+        state: started
+        enabled: true
+      when: ansible_distribution == 'Linux Mint'
+
+    - name: httpd stop
+      tags:
+        - httpd_stop
+      service:
+        name: httpd
+        state: stopped
+        enabled: false
+      when: ansible_distribution == 'AlmaLinux'
+
+    - name: apache2 stop
+      tags:
+        - apache_stop
+      service:
+        name: apache2
+        state: stopped
+        enabled: false
+      when: ansible_distribution == 'Linux Mint'
+...
