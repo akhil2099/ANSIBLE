@@ -1,0 +1,27 @@
+---
+- name: Play 1 - adding service
+  hosts: web
+  tags:
+    - add
+  tasks:
+    - name: adding services
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+    - name: firewall reload
+      command: firewall-cmd --reload
+- name: Play 2 - to delete firewall service
+  hosts: web
+  tags:
+    - delete
+  become: yes 
+  tasks:
+    - name: deleting firewall service
+      firewalld:
+        service: http
+        permanent: yes
+        state: disabled
+    - name: firewall reload
+      command: firewall-cmd --reload
+...
