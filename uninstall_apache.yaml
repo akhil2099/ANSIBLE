@@ -1,0 +1,10 @@
+---
+- name: uninstall apache
+  hosts: web
+  tasks:
+    - name: uninstalling apache
+      yum:
+        name: httpd
+        state: absent
+...
+
