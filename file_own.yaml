@@ -1,0 +1,11 @@
+---
+- name: create file , permission , ownership
+  hosts: all
+  tasks:
+    - name: creating file in /opt/
+      file:
+        path: /opt/akhil.txt
+        owner: testuser1
+        state: touch
+        mode: '755'
+...
